@@ -1,0 +1,5 @@
+# Local only (not published)
+SPEC.md
+build/
+dist/
+*.ini

@@ -1,0 +1,38 @@
+#include <winuser.h>
+#include "../src/version.h"
+1 ICON "app.ico"
+1 RT_MANIFEST "app.manifest"
+ICON_PREV RCDATA "icon_prev.png"
+ICON_NEXT RCDATA "icon_next.png"
+ICON_ZOOMIN RCDATA "icon_zoomin.png"
+ICON_ZOOMOUT RCDATA "icon_zoomout.png"
+ICON_RESET RCDATA "icon_reset.png"
+ICON_PIXEL RCDATA "icon_pixel.png"
+ICON_BG RCDATA "icon_bg.png"
+ICON_COPY RCDATA "icon_copy.png"
+ICON_DELETE RCDATA "icon_delete.png"
+ICON_INFO RCDATA "icon_info.png"
+ICON_FBACK RCDATA "icon_fback.png"
+ICON_PLAY RCDATA "icon_play.png"
+ICON_FNEXT RCDATA "icon_fnext.png"
+ICON_SELECT RCDATA "icon_select.png"
+
+1 VERSIONINFO
+FILEVERSION TLIV_VER_MAJOR,TLIV_VER_MINOR,TLIV_VER_PATCH,0
+PRODUCTVERSION TLIV_VER_MAJOR,TLIV_VER_MINOR,TLIV_VER_PATCH,0
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "040904B0"
+    BEGIN
+      VALUE "FileDescription", "Tenokun's Light Image Viewer"
+      VALUE "ProductName", "Tenokun's Light Image Viewer"
+      VALUE "ProductVersion", TLIV_VER_STR
+      VALUE "FileVersion", TLIV_VER_STR
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x409, 1200
+  END
+END
