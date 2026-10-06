@@ -2,6 +2,10 @@
 
 **A very light image viewer for Windows, made for pixel art.** It has a pixel mode (no smoothing, whole-number zoom) and a normal mode.
 
+![User's Guide 1/3: parts and what they do](docs/guide_1_parts.png)
+![User's Guide 2/3: controls and features](docs/guide_2_controls.png)
+![User's Guide 3/3: specifications and notes](docs/guide_3_spec.png)
+
 ## Download
 
 Get either one from GitHub Releases:
