@@ -75,8 +75,12 @@ the disk image. The app supports the CPU architecture on which it was built
 (Apple Silicon or Intel); packaging does not make a universal binary.
 
 The bundle is ad-hoc signed for local use, not notarized. The Windows build is
-unchanged. GitHub Actions builds, tests, and packages both a macOS ZIP and DMG;
-local changes must be pushed before that workflow runs.
+unchanged. Builds and packaging are local; no GitHub Actions workflow is included.
+To create a ZIP instead of a disk image:
+
+```sh
+ditto -c -k --sequesterRsrc --keepParent build/TLIV.app build/TLIV-macos.zip
+```
 
 ### UI and language
 
