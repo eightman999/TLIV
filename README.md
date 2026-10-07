@@ -156,7 +156,7 @@ Other raster formats (JPEG, BMP, TIFF, HEIC, ICO, WebP, APNG) use ImageIO;
 all OS-specific animation/disposal variants have not been verified. TIFF/ICO
 show the first image. Animation currently loops continuously. Remaining
 Windows parity work includes directory watching and exact decoder/animation
-behaviour. Intel hardware and macOS 11 runtime remain unverified.
+behaviour. macOS 11 runtime remains unverified (native Apple Silicon and Intel x86_64 builds/runtimes verified).
 
 ## License
 

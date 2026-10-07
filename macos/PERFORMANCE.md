@@ -47,7 +47,7 @@ ImageIO's internal decoder storage or total RSS.
 - Self-tests verify GIF disposal/wrapping/LRU, Display P3/alpha preservation,
   tile boundaries, PNG text streaming, colour count stripes and cancellation.
   Native GUI verified the metadata panel and explicit colour-count result.
-  Apple Silicon build/runtime and Intel cross-build passed; Intel hardware,
+  Apple Silicon and Intel (x86_64) native builds and runtimes passed;
   macOS 11 runtime and broad decoder behaviour remain unverified.
 
 ## Reproduce
@@ -93,3 +93,20 @@ split layout is forced before use; GUI rendering is verified separately.
 `--self-test-ui` checks rendered pane colours, layout, all seven ICNS sizes,
 the 14 bundled toolbar icons and redraw on state
 changes; it needs an AppKit window-server session.
+
+## Intel (x86_64) verification
+
+Measured 2026-10-07 on Intel Core i9-9980HK, macOS 26.6, native optimized Swift build (`-target x86_64-apple-macosx11.0`).
+Each cell is the median of three sequential fresh-process runs with warm filesystem cache:
+
+| Operation | Time | Peak RSS |
+| --- | ---: | ---: |
+| Metadata report | 2.76 ms | 149.2 MiB |
+| Explicit colour count | 124.92 ms | 150.9 MiB |
+| First cursor colour | 0.59 ms | 149.2 MiB |
+| 2,000 subsequent cursor probes | 43.63 ms | 149.2 MiB |
+| 60 checkerboard image draws | 593.67 ms | 149.2 MiB |
+| 128 GIF frame visits | 304.84 ms | 47.0 MiB |
+
+All automated self-tests (`--self-test`, `--self-test-ui`) and disk image packaging (`./package-macos.sh`) pass on native Intel hardware.
+
