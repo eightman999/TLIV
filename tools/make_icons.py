@@ -77,21 +77,26 @@ def bmp_entry(px):
 def scale(px, n):
     return [[p for p in row for _ in range(n)] for row in px for _ in range(n)]
 
-# 古い生成物を消す
-for f in os.listdir(out):
-    if f.startswith('icon_') or f.startswith('app_') or f == 'app.ico':
-        os.remove(os.path.join(out, f))
+def main():
+    # 古い生成物を消す
+    for f in os.listdir(out):
+        if f.startswith('icon_') or f.startswith('app_') or f == 'app.ico':
+            os.remove(os.path.join(out, f))
 
-for role, name in ROLES.items():
-    open(os.path.join(out, 'icon_%s.png' % role), 'wb').write(png(read_png(os.path.join(src, name + '.png'))))
+    for role, name in ROLES.items():
+        open(os.path.join(out, 'icon_%s.png' % role), 'wb').write(png(read_png(os.path.join(src, name + '.png'))))
 
-base = read_png(os.path.join(src, 'icon.png'))
-entries = []
-for s in [16, 32, 48, 64, 256]:
-    px = scale(base, s // 16)
-    entries.append((s, png(px) if s >= 256 else bmp_entry(px)))
-ico = struct.pack('<HHH', 0, 1, len(entries)); off = 6 + 16 * len(entries); body = b''
-for s, d in entries:
-    ico += struct.pack('<BBBBHHII', s % 256, s % 256, 0, 0, 1, 32, len(d), off + len(body)); body += d
-open(os.path.join(out, 'app.ico'), 'wb').write(ico + body)
-print('icons:', ', '.join(ROLES), '| app.ico 16/32/48/64/256')
+    base = read_png(os.path.join(src, 'icon.png'))
+    entries = []
+    for s in [16, 32, 48, 64, 256]:
+        px = scale(base, s // 16)
+        entries.append((s, png(px) if s >= 256 else bmp_entry(px)))
+    ico = struct.pack('<HHH', 0, 1, len(entries)); off = 6 + 16 * len(entries); body = b''
+    for s, d in entries:
+        ico += struct.pack('<BBBBHHII', s % 256, s % 256, 0, 0, 1, 32, len(d), off + len(body)); body += d
+    open(os.path.join(out, 'app.ico'), 'wb').write(ico + body)
+    print('icons:', ', '.join(ROLES), '| app.ico 16/32/48/64/256')
+
+
+if __name__ == "__main__":
+    main()
