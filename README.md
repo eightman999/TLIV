@@ -68,9 +68,15 @@ open build/TLIV.app --args /absolute/path/to/image.svg
 build/TLIV.app/Contents/MacOS/TLIV --self-test
 ```
 
+Create a drag-and-drop installer disk image with `./package-macos.sh`, or run
+`./package-macos.sh --skip-build` to package the existing verified app. The result
+is `build/TLIVSetup.dmg`: drag TLIV.app to the Applications shortcut, then eject
+the disk image. The app supports the CPU architecture on which it was built
+(Apple Silicon or Intel); packaging does not make a universal binary.
+
 The bundle is ad-hoc signed for local use, not notarized. The Windows build is
-unchanged. GitHub Actions builds, tests, and packages a macOS ZIP; local changes
-must be pushed before that workflow runs.
+unchanged. GitHub Actions builds, tests, and packages both a macOS ZIP and DMG;
+local changes must be pushed before that workflow runs.
 
 ### UI and language
 

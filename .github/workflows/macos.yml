@@ -13,7 +13,10 @@ jobs:
       - run: plutil -lint build/TLIV.app/Contents/Info.plist
       - run: codesign --verify --deep --strict build/TLIV.app
       - run: ditto -c -k --sequesterRsrc --keepParent build/TLIV.app build/TLIV-macos.zip
+      - run: ./package-macos.sh --skip-build
       - uses: actions/upload-artifact@v4
         with:
           name: TLIV-macos
-          path: build/TLIV-macos.zip
+          path: |
+            build/TLIV-macos.zip
+            build/TLIVSetup.dmg
